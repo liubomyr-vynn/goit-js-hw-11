@@ -7,7 +7,7 @@ const searchFormEl = document.querySelector('.js-search-form');
 const galleryEl = document.querySelector('.js-gallery');
 const loadMoreEl = document.querySelector('.js-load-more');
 
-const BASE_URL = 'http://pixabay.com/api';
+const BASE_URL = 'https://pixabay.com/api';
 const API_KEY = '34845172-53e67b2f5b8cb8ccf3124ff1b';
 
 let currentPage = 1;
@@ -43,9 +43,10 @@ searchFormEl.addEventListener('submit', handleSubmitOnButton);
 loadMoreEl.addEventListener('click', handleButtonClickLoadMore);
 
 async function fetchPhotos(userQuery) {
-  const response = await axios.get(
-    `${BASE_URL}?${searchParams}&q=${userQuery}&page=${currentPage}`
-  );
+  searchParams.set('q', userQuery);
+  searchParams.set('page', currentPage);
+
+  const response = await axios.get(`${BASE_URL}`, { params: searchParams });
   return response.data;
 }
 
