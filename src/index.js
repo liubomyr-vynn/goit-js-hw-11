@@ -65,6 +65,7 @@ async function handleSubmitOnButton(event) {
     renderGallery(images);
 
     if (images.length === 0) {
+      loadMoreEl.classList.add('is-hidden');
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
