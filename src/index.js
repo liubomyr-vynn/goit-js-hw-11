@@ -52,13 +52,14 @@ async function fetchPhotos(userQuery) {
 async function handleSubmitOnButton(event) {
   event.preventDefault();
   const userQuery = event.currentTarget.elements.searchQuery.value.trim();
-  if (!userQuery) {
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  }
+
   try {
+    if (!userQuery) {
+      Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+      return;
+    }
     const data = await fetchPhotos(userQuery);
     const images = data.hits;
     totalPages = Math.ceil(data.totalHits / data.hits.length);
