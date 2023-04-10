@@ -71,7 +71,7 @@ async function handleSubmitOnButton(event) {
       );
       return;
     }
-    Notiflix.Notify.info(`Hooray! We found ${data.totalHits} images.`);
+    Notiflix.Notify.info(`Hooray! We found ${data.total} images.`);
     currentQuery = userQuery;
     if (currentPage !== totalPages) {
       loadMoreEl.classList.add('is-hidden');
